@@ -17,8 +17,8 @@ public class SupervisedActor extends AbstractActor {
 	@Override
 	public Receive createReceive() {
 		return receiveBuilder().matchEquals("fail", f -> {
-			System.out.println("supervised actor fails now");
-			throw new Exception("I failed!");
+			System.out.println("supervised actor doing some work");
+			//throw new Exception("I failed!");
 		}).build();
 	}
 
