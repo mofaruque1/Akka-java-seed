@@ -4,6 +4,7 @@ import akka.actor.AbstractActor;
 
 public class SupervisedActor extends AbstractActor {
 
+	public static int balance = 10;
 	@Override
 	public void preStart() {
 		System.out.println("supervised actor started");
@@ -16,8 +17,18 @@ public class SupervisedActor extends AbstractActor {
 
 	@Override
 	public Receive createReceive() {
-		return receiveBuilder().matchEquals("fail", f -> {
+		return receiveBuilder().matchEquals("withdraw", w -> {
 			System.out.println("supervised actor doing some work");
+			if(balance>0) {
+				int withdrawAmt = 5;
+				System.out.println("withdrawing from "+balance +" , "+withdrawAmt);
+				balance = balance - withdrawAmt;
+				
+			}
+			else {
+				System.out.println("No money left");
+			}
+			//System.out.println("supervised actor doing some work");
 			//throw new Exception("I failed!");
 		}).build();
 	}

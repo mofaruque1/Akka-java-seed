@@ -11,7 +11,9 @@ public class MainClass {
 		final ActorSystem system = ActorSystem.create("helloakka");
 		try {
 			ActorRef supervisingActor = system.actorOf(Props.create(SupervisingActor.class), "supervising-actor");
-		    supervisingActor.tell("failChild", ActorRef.noSender());
+		    supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
+		    supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
+		    supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
 		} finally {
 			system.terminate();
 		}

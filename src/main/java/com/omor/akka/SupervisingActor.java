@@ -10,8 +10,8 @@ public class SupervisingActor extends AbstractActor {
 
 	@Override
 	public Receive createReceive() {
-		return receiveBuilder().matchEquals("failChild", f -> {
-			child.tell("fail", getSelf());
+		return receiveBuilder().matchEquals("withdrawFromAcct", f -> {
+			child.tell("withdraw", getSelf());
 		}).build();
 	}
 
