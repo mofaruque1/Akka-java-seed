@@ -18,15 +18,15 @@ public class SupervisedActor extends AbstractActor {
 	@Override
 	public Receive createReceive() {
 		return receiveBuilder().matchEquals("withdraw", w -> {
-			System.out.println("supervised actor doing some work");
+			//System.out.println("supervised actor doing some work");
 			if(balance>0) {
 				int withdrawAmt = 5;
-				System.out.println("withdrawing from "+balance +" , "+withdrawAmt);
+				System.out.println("\tfrom "+balance +"$ , withdrawing "+withdrawAmt+"$");
 				balance = balance - withdrawAmt;
 				
 			}
 			else {
-				System.out.println("No money left");
+				System.out.println("\tNo money left");
 			}
 			//System.out.println("supervised actor doing some work");
 			//throw new Exception("I failed!");

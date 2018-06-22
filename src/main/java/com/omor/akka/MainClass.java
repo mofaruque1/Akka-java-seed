@@ -11,12 +11,25 @@ public class MainClass {
 		final ActorSystem system = ActorSystem.create("helloakka");
 		try {
 			ActorRef supervisingActor = system.actorOf(Props.create(SupervisingActor.class), "supervising-actor");
-		    supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
-		    supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
-		    supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
+
+			new Thread(() -> {
+				System.out.println("1 started");
+				supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
+			}).start();
+			
+			new Thread(() -> {
+				System.out.println("2 started");
+				supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());
+			}).start();
+			
+			new Thread(() -> {
+				System.out.println("3 started");
+				supervisingActor.tell("withdrawFromAcct", ActorRef.noSender());			
+			}).start();
+			
 		} finally {
 			system.terminate();
 		}
-	    
+
 	}
 }
